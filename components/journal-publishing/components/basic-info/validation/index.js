@@ -1,9 +1,10 @@
 import * as Yup from 'yup';
 
-export const validateUpdateUser = Yup.object().shape({
-  email: Yup.string()
-    .email('Email must be valid email')
-    .required('Email is mandatory'),
+export const validateBasicInfo = Yup.object().shape({
+  joural_type: Yup.string(),
+  email_address: Yup.string()
+    .email()
+    .required('Code is mandatory'),
   user_name: Yup.string(),
   first_name: Yup.string(),
   last_name: Yup.string(),
@@ -11,5 +12,5 @@ export const validateUpdateUser = Yup.object().shape({
   city: Yup.string(),
   country: Yup.string(),
   postal_code: Yup.number(),
-  about_me: Yup.string(),
+  About_me: Yup.string(),
 });

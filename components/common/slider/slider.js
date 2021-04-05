@@ -29,7 +29,10 @@ const Slider = () => {
             </div>
 
             <div className="item">
-              <img src="https://mopinion.com/wp-content/uploads/2019/11/Cover-ux-books.jpg" />
+              <img
+                src="https://mopinion.com/wp-content/uploads/2019/11/Cover-ux-books.jpg"
+                style={{ width: '100%', height: '400px' }}
+              />
             </div>
 
             <div className="item">

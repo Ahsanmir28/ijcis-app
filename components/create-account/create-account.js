@@ -39,7 +39,6 @@ const CreateAccount = () => {
             onSubmit={async (values, actions) => {
               await createUser.mutate(_omit(values, 'confirm_password'), {
                 onSuccess: async res => {
-                  // eslint-disable-next-line no-console
                   console.log(res);
                   localStorage.setItem('phone_number', values.phone_number);
                   localStorage.setItem('user_email', values.email);

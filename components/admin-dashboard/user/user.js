@@ -1,10 +1,27 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { Userform } from '@/components/admin-dashboard/user/components';
+import {
+  UPDATE_USER,
+  GET_USER_BY_ID,
+} from '@/components/admin-dashboard/user/queries';
+import { Message } from '@/components/alert/message';
+import Router from 'next/router';
+import _omit from 'lodash.omit';
+import { useMutation, useQuery } from 'react-query';
+import { getLocalStorageValues } from '@/constants/local-storage';
+import { validateUpdateUser } from './validation';
 import SecureTemplate from '../../layouts/secure-template';
-import { validateUserForm } from './validation';
+import _get from 'lodash/get';
 
 const User = () => {
+  const updateUser = useMutation(UPDATE_USER);
+  const { user_id } = getLocalStorageValues();
+  const { data, isLoaing, refetch } = useQuery(
+    ['USER_BY_ID', { user_id, id: 'acac' }],
+    GET_USER_BY_ID,
+  );
+  console.log('data', data);
   return (
     <div>
       <div className="">
@@ -20,33 +37,40 @@ const User = () => {
                     </div>
                     <div className="card-body">
                       <Formik
+                        enableReinitialize={true}
                         initialValues={{
-                          joural_type: '',
-                          email_address: '',
-                          user_name: '',
-                          first_name: '',
-                          last_name: '',
-                          address: '',
-                          city: '',
-                          country: '',
-                          postal_code: '',
-                          About_me: '',
+                          email: _get(data, 'data.email', ''),
+                          user_name: _get(data, 'data.user_name', ''),
+                          first_name: _get(data, 'data.first_name', ''),
+                          last_name: _get(data, 'data.last_name', ''),
+                          address: _get(data, 'data.address', ''),
+                          city: _get(data, 'data.city', ''),
+                          country: _get(data, 'data.country', ''),
+                          postal_code: _get(data, 'data.postal_code', ''),
+                          about_me: _get(data, 'data.about_me', ''),
                         }}
+                        validationSchema={validateUpdateUser}
                         onSubmit={async (values, actions) => {
-                          // await createUser.mutate(
-                          //   _omit(values, 'confirm_password'),
-                          //   {
-                          //     onSuccess: async res => {
-                          //       // eslint-disable-next-line no-console
-                          //       Message.success();
-                          //       actions.resetForm();
-                          //     },
-                          //     onError: e => {
-                          //       actions.setSubmitting(false);
-                          //       Message.error(e);
-                          //     },
-                          //   },
-                          // );
+                          await updateUser.mutate(
+                            {
+                              data: values,
+                              user_id,
+                            },
+                            {
+                              onSuccess: async res => {
+                                await refetch();
+                                Message.success();
+                                actions.resetForm();
+                                await Router.push({
+                                  shallow: true,
+                                });
+                              },
+                              onError: e => {
+                                actions.setSubmitting(false);
+                                Message.error(e);
+                              },
+                            },
+                          );
                         }}
                       >
                         {formikProps => <Userform {...formikProps} />}
@@ -176,7 +200,6 @@ const User = () => {
 
               <li className="button-container">
                 <a
-                  /* eslint-disable-next-line max-len */
                   href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html"
                   target="_blank"
                   className="btn btn-default btn-block"
@@ -187,7 +210,6 @@ const User = () => {
               <li className="button-container github-star">
                 <a
                   className="github-button"
-                  /* eslint-disable-next-line max-len */
                   href="https://github.com/creativetimofficial/material-dashboard"
                   data-icon="octicon-star"
                   data-size="large"

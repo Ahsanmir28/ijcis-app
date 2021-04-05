@@ -9,6 +9,7 @@ import MarketingHead from '../layouts/marketing-template/marketing-head';
 import { LoginForm } from './components';
 import { validateLoginForm } from './validation';
 import { LOGIN_USER } from './queries';
+import _get from 'lodash/get';
 
 const Login = () => {
   const loginUser = useMutation(LOGIN_USER);
@@ -35,6 +36,7 @@ const Login = () => {
                 onSuccess: async res => {
                   // eslint-disable-next-line no-console
                   console.log(res);
+                  localStorage.setItem('user_id', _get(res, 'data._id'));
                   Message.success();
                   actions.resetForm();
                   await Router.push('/admin', '/admin', { shallow: true });

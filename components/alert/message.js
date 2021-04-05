@@ -16,9 +16,9 @@ export class Message {
         message={
           !otherOption?.message
             ? _get(
-            e,
-            'response.data.message',
-            'Something went wrong. Please try again.”',
+              e,
+              'response.data.message',
+              'Something went wrong. Please try again.”',
             )
             : otherOption?.message || 'Operation Failed'
         }
