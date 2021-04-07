@@ -49,15 +49,7 @@ const Sidebar = () => {
               <li className={`nav-item ${pathname === '/admin/tables' && 'active'}  `}>
                 <a className="nav-link" href="/admin/tables">
                   <i className="material-icons">content_paste</i>
-                  <p>Table List</p>
-                </a>
-              </li>
-            </Link>
-            <Link href="/admin/typography" as="/admin/typography">
-              <li className={`nav-item ${pathname === '/admin/typograpy' && 'active'}  `}>
-                <a className="nav-link" href="/admin/typography">
-                  <i className="material-icons">library_books</i>
-                  <p>Typography</p>
+                  <p>Users & Roles</p>
                 </a>
               </li>
             </Link>
@@ -65,7 +57,7 @@ const Sidebar = () => {
               <li className={`nav-item ${pathname === '/admin/icons' && 'active'}  `}>
                 <a className="nav-link" href="/admin/icons">
                   <i className="material-icons">bubble_chart</i>
-                  <p>Icons</p>
+                  <p>Statistics</p>
                 </a>
               </li>
             </Link>

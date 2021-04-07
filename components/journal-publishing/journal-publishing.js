@@ -7,8 +7,8 @@ import {
   DataUpload,
   Reviews,
 } from '@/components/journal-publishing/components';
-import { BasicInfo } from './components/basic-info/components/basic-info';
 import { useRouter } from 'next/router';
+import { BasicInfo } from './basic-info/components/basic-info';
 
 const JournalPublishing = () => {
   const router = useRouter();
@@ -28,7 +28,7 @@ const JournalPublishing = () => {
             <div className="card-body">
               <Paper square>
                 <RadioTabs
-                  headings={['Info', 'Upload', 'Reviews']}
+                  headings={['Masthead', 'Upload', 'Reviews']}
                   value={value}
                   setValue={setValue}
                 >
