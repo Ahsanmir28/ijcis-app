@@ -19,7 +19,7 @@ const SecureHead = () => {
         id="bootstrap-css"
       />
       <link
-        href="../assets/css/material-dashboard.css"
+        href="/assets/css/material-dashboard.css"
         rel="stylesheet"
       />
     </Head>
