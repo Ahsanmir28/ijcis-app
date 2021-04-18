@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/ijcis-app.iml" filepath="$PROJECT_DIR$/.idea/ijcis-app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../ijcis-backend/.idea/ijcis-backend.iml" filepath="$PROJECT_DIR$/../ijcis-backend/.idea/ijcis-backend.iml" />
     </modules>
   </component>
 </project>

@@ -7,16 +7,18 @@ import {
 } from '@/components/admin-dashboard/user/queries';
 import { Message } from '@/components/alert/message';
 import Router from 'next/router';
+// eslint-disable-next-line no-unused-vars
 import _omit from 'lodash.omit';
 import { useMutation, useQuery } from 'react-query';
 import { getLocalStorageValues } from '@/constants/local-storage';
+import _get from 'lodash/get';
 import { validateUpdateUser } from './validation';
 import SecureTemplate from '../../layouts/secure-template';
-import _get from 'lodash/get';
 
 const User = () => {
   const updateUser = useMutation(UPDATE_USER);
   const { user_id } = getLocalStorageValues();
+  // eslint-disable-next-line no-unused-vars
   const { data, isLoaing, refetch } = useQuery(
     ['USER_BY_ID', { user_id, id: 'acac' }],
     GET_USER_BY_ID,

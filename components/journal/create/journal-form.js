@@ -1,18 +1,17 @@
+// @flow
 import React, { useState } from 'react';
 import SecureTemplate from '@/layout/secure-template';
 import { Paper } from '@material-ui/core';
 import RadioTabs from '@/components/radio-tabs';
 import { TabPanel } from '@/components/radio-tabs/radio-tabs';
-import {
-  DataUpload,
-  Reviews,
-} from '@/components/journal-publishing/components';
 import { useRouter } from 'next/router';
-import { BasicInfo } from './basic-info/components/basic-info';
+import { Formik } from 'formik';
+import { BasicInfo, Section, Contact, Categories } from './components';
 
-const JournalPublishing = () => {
+const JournalForm = () => {
   const router = useRouter();
   const { journalId } = router.query;
+  console.log('journalId', journalId);
   const [value, setValue] = useState(0);
   return (
     <SecureTemplate title="JournalPublishing">
@@ -28,7 +27,7 @@ const JournalPublishing = () => {
             <div className="card-body">
               <Paper square>
                 <RadioTabs
-                  headings={['Masthead', 'Upload', 'Reviews']}
+                  headings={['Masthead', 'Contact', 'Section', 'Categories']}
                   value={value}
                   setValue={setValue}
                 >
@@ -36,10 +35,13 @@ const JournalPublishing = () => {
                     <BasicInfo />
                   </TabPanel>
                   <TabPanel value={value} index={1}>
-                    <DataUpload />
+                    <Contact />
                   </TabPanel>
                   <TabPanel value={value} index={2}>
-                    <Reviews />
+                    <Section />
+                  </TabPanel>
+                  <TabPanel value={value} index={2}>
+                    <Categories />
                   </TabPanel>
                 </RadioTabs>
               </Paper>
@@ -50,4 +52,4 @@ const JournalPublishing = () => {
     </SecureTemplate>
   );
 };
-export default JournalPublishing;
+export default JournalForm;
