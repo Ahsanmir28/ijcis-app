@@ -9,10 +9,9 @@ export const GET_JOURNAL_BY_USER_ID = async key => {
   );
   return res.data;
 };
-export const DEL_JOURNAL_BY_ID = async key => {
-  const { queryKey } = key;
+export const DEL_JOURNAL_BY_ID = async id => {
   const res = await axios.delete(
-    `${baseURL}/v1/journal/${queryKey[1].journal_id}`,
+    `${baseURL}/v1/journal/${id}`,
   );
   return res.data;
 };

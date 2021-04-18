@@ -5,7 +5,7 @@ import Router from 'next/router';
 import { useQuery, useMutation } from 'react-query';
 import { getLocalStorageValues } from '@/constants/local-storage';
 import {
-  // DEL_JOURNAL_BY_USER_ID,
+  DEL_JOURNAL_BY_ID,
   GET_JOURNAL_BY_USER_ID,
 } from '@/components/journal/queries';
 import _get from 'lodash/get';
@@ -13,17 +13,29 @@ import _get from 'lodash/get';
 // import DeleteIcon from '@material-ui/icons/Delete';
 // import { JOURNAL_MAST } from '@/components/journal/create/queries';
 // import { UPDATE_USER } from '@/components/admin-dashboard/user/queries';
-// import { Message } from '@/components/alert/message';
+import { Message } from '@/components/alert/message';
 import { TableHeadings } from './components';
 
 const JournalManager = () => {
   const { user_id } = getLocalStorageValues();
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     ['JOURNAL_BY_USER_ID', { user_id }],
     GET_JOURNAL_BY_USER_ID,
   );
-  // const delJournalByUserId = useMutation(DEL_JOURNAL_BY_USER_ID);
+  const delJournalById = useMutation(DEL_JOURNAL_BY_ID);
   console.log('data', data);
+  const handleDeleteJournal = async (e, id) => {
+    e.stopPropagation();
+    await delJournalById.mutate(id, {
+      onSuccess: async () => {
+        await refetch();
+        Message.success();
+      },
+      onError: e => {
+        Message.error(e);
+      },
+    });
+  };
   return (
     <div className="">
       <SecureTemplate title="Tables">
@@ -58,20 +70,26 @@ const JournalManager = () => {
                           {_get(data, 'data', []).map((journal, i) => (
                             <tr
                               key={i}
-                              onClick={() =>
+                              onClick={e => {
+                                e.stopPropagation();
                                 Router.push(
                                   '/admin/journal/detail/[journalId]',
                                   `/admin/journal/detail/${journal._id}`,
                                   { shallow: true },
-                                )
-                              }
+                                );
+                              }}
                             >
                               <td>{i + 1}</td>
                               <td>{journal.journal_title}</td>
                               <td>{journal.journal_initials} </td>
                               <td>{journal.publisher}</td>
                               <td>
-                                <button type="submit" onClick={0}>
+                                <button
+                                  type="submit"
+                                  onClick={e =>
+                                    handleDeleteJournal(e, journal._id)
+                                  }
+                                >
                                   Delete Account
                                 </button>
                               </td>
