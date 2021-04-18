@@ -116,16 +116,20 @@ const CreateAccountForm = (props: Props) => {
               ) : (
                 <label htmlFor="exampleInputEmail">Phone Number</label>
               )}
-              <div className="form-group">
+              <div className="form-group input-group">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">
+                    <i className="fa fa-phone" />
+                  </span>
+                </div>
                 <PhoneInput
                   inputClass={`form-control
-                        ${fieldValidate(field, form)}`}
+                       form-control-user ${fieldValidate(field, form)}`}
                   value={values.phone_number}
                   onChange={phone =>
                     form.setFieldValue('phone_number', `+${phone}`)
                   }
                   onBlur={handleBlur}
-                  inputStyle={{ marginLeft: '20px'}}
                 />
               </div>
             </React.Fragment>

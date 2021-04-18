@@ -1,74 +1,84 @@
 import React from 'react';
-import Head from 'next/head';
-import SecureTemplate from '../../layouts/secure-template';
+import { Formik } from 'formik';
+import SecureTemplate from '@/layout/secure-template';
+import { BasicInfo } from './components/basic-info';
+import { validateBasicInfo } from './validation';
 
-const Icons = () => {
+const Info = () => {
   return (
     <div>
-      <Head>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
-        />
-        <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
-        ></link>
-        <link
-          href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          rel="stylesheet"
-          id="bootstrap-css"
-        ></link>
-        <link
-          href="../assets/css/material-dashboard.css?v=2.1.2"
-          rel="stylesheet"
-        />
-      </Head>
       <div className="">
-        <SecureTemplate title="Icons">
-          {/*  <!-- Navbar --></div> */}
-
-          {/*  <!-- End Navbar --> */}
+        <SecureTemplate title="Tables">
           <div className="content">
             <div className="container-fluid">
-              <div className="container-fluid">
-                <div className="card card-plain">
-                  <div className="card-header card-header-primary">
-                    <h4 className="card-title">Material Design Icons</h4>
-                    <p className="card-category">
-                      Handcrafted by our friends from
-                      <a
-                        target="_blank"
-                        href="https://design.google.com/icons/"
+              <div className="row">
+                <div className="col-md-8">
+                  <div className="card">
+                    <div className="card-header card-header-primary">
+                      <h4 className="card-title">Edit Profile</h4>
+                      <p className="card-category">Complete your profile</p>
+                    </div>
+                    <div className="card-body">
+                      <Formik
+                        initialValues={{
+                          joural_type: '',
+                          email_address: '',
+                          user_name: '',
+                          first_name: '',
+                          last_name: '',
+                          address: '',
+                          city: '',
+                          country: '',
+                          postal_code: '',
+                          About_me: '',
+                        }}
+                        onSubmit={async (values, actions) => {
+                          await userInfo.mutate({
+                            onSuccess: async res => {
+                              Message.success();
+                              actions.resetForm();
+                            },
+                            onError: e => {
+                              actions.setSubmitting(false);
+                              Message.error(e);
+                            },
+                          });
+                        }}
                       >
-                        Google
-                      </a>
-                    </p>
+                        {formikProps => <BasicInfo {...formikProps} />}
+                      </Formik>
+                    </div>
                   </div>
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="card-body">
-                        <div className="iframe-container d-none d-lg-block">
-                          <iframe src="https://design.google.com/icons/">
-                            <p>Your browser does not support iframes.</p>
-                          </iframe>
-                        </div>
-                        <div className="col-md-12 d-none d-sm-block d-md-block d-lg-none d-block d-sm-none text-center ml-auto mr-auto">
-                          <h5>
-                            The icons are visible on Desktop mode inside an
-                            iframe. Since the iframe is not working on Mobile
-                            and Tablets please visit the icons on their original
-                            page on Google. Check the
-                            <a
-                              href="https://design.google.com/icons/"
-                              target="_blank"
-                            >
-                              Material Icons
-                            </a>
-                          </h5>
-                        </div>
-                      </div>
+                </div>
+
+                <div className="col-md-4">
+                  <div className="card card-profile">
+                    <div className="card-avatar">
+                      <a href="javascript:;">
+                        <img
+                          className="img"
+                          src="../assets/img/faces/marc.jpg"
+                          alt=""
+                        />
+                      </a>
+                    </div>
+                    <div className="card-body">
+                      <h6 className="card-category text-gray">
+                        CEO / Co-Founder
+                      </h6>
+                      <h4 className="card-title">Alec Thompson</h4>
+                      <p className="card-description">
+                        Don't be scared of the truth because we need to restart
+                        the human foundation in truth And I love you like Kanye
+                        loves Kanye I love Rick Owens’ bed design but the back
+                        is...
+                      </p>
+                      <a
+                        href="javascript:;"
+                        className="btn btn-primary btn-round"
+                      >
+                        Follow
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -159,18 +169,10 @@ const Icons = () => {
                   Free Download
                 </a>
               </li>
-              {/*  <!-- <li class="header-title">Want more components?</li> */}
+
               <li className="button-container">
                 <a
-                  href="https://www.creative-tim.com/product/material-dashboard-pro"
-                  target="_blank"
-                  className="btn btn-warning btn-block"
-                >
-                  Get the pro version
-                </a>
-              </li>
-              <li className="button-container">
-                <a
+                  /* eslint-disable-next-line max-len */
                   href="https://demos.creative-tim.com/material-dashboard/docs/2.1/getting-started/introduction.html"
                   target="_blank"
                   className="btn btn-default btn-block"
@@ -181,6 +183,7 @@ const Icons = () => {
               <li className="button-container github-star">
                 <a
                   className="github-button"
+                  /* eslint-disable-next-line max-len */
                   href="https://github.com/creativetimofficial/material-dashboard"
                   data-icon="octicon-star"
                   data-size="large"
@@ -208,4 +211,4 @@ const Icons = () => {
     </div>
   );
 };
-export default Icons;
+export default Info;

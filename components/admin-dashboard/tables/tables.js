@@ -1,29 +1,7 @@
-// @flow
 import React from 'react';
-import SecureTemplate from '@/layout/secure-template';
-import Router from 'next/router';
-import { useQuery, useMutation } from 'react-query';
-import { getLocalStorageValues } from '@/constants/local-storage';
-import {
-  // DEL_JOURNAL_BY_USER_ID,
-  GET_JOURNAL_BY_USER_ID,
-} from '@/components/journal/queries';
-import _get from 'lodash/get';
-// import IconButton from '@material-ui/core/IconButton';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import { JOURNAL_MAST } from '@/components/journal/create/queries';
-// import { UPDATE_USER } from '@/components/admin-dashboard/user/queries';
-// import { Message } from '@/components/alert/message';
-import { TableHeadings } from './components';
+import SecureTemplate from '../../layouts/secure-template';
 
-const JournalManager = () => {
-  const { user_id } = getLocalStorageValues();
-  const { data, isLoading } = useQuery(
-    ['JOURNAL_BY_USER_ID', { user_id }],
-    GET_JOURNAL_BY_USER_ID,
-  );
-  // const delJournalByUserId = useMutation(DEL_JOURNAL_BY_USER_ID);
-  console.log('data', data);
+const Tables = () => {
   return (
     <div className="">
       <SecureTemplate title="Tables">
@@ -33,50 +11,65 @@ const JournalManager = () => {
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-header card-header-primary">
-                    <button
-                      className="btn btn-primary float-right"
-                      onClick={() =>
-                        Router.push(
-                          '/admin/journal/create',
-                          '/admin/journal/create',
-                          {
-                            shallow: true,
-                          },
-                        )
-                      }
-                    >
-                      Create Journal
-                    </button>
-                    <h4 className="card-title ">Journals</h4>
-                    <p className="card-category"> Here are the journals</p>
+                    <h4 className="card-title ">User & Roles</h4>
+                    <p className="card-category">
+                      {' '}
+                      Here are the Users and their Roles
+                    </p>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">
-                      <table className="table table-hover">
-                        <TableHeadings />
+                      <table className="table">
+                        <thead className=" text-primary">
+                          <th>ID</th>
+                          <th>USERNAME</th>
+                          <th>EMAIL</th>
+                          <th>ROLES</th>
+                          <th>Salary</th>
+                        </thead>
                         <tbody>
-                          {_get(data, 'data', []).map((journal, i) => (
-                            <tr
-                              key={i}
-                              onClick={() =>
-                                Router.push(
-                                  '/admin/journal/detail/[journalId]',
-                                  `/admin/journal/detail/${journal._id}`,
-                                  { shallow: true },
-                                )
-                              }
-                            >
-                              <td>{i + 1}</td>
-                              <td>{journal.journal_title}</td>
-                              <td>{journal.journal_initials} </td>
-                              <td>{journal.publisher}</td>
-                              <td>
-                                <button type="submit" onClick={0}>
-                                  Delete Account
-                                </button>
-                              </td>
-                            </tr>
-                          ))}
+                          <tr>
+                            <td>1</td>
+                            <td>Dakota Rice</td>
+                            <td>Niger</td>
+                            <td>Journal Manager</td>
+                            <td className="text-primary">$36,738</td>
+                          </tr>
+                          <tr>
+                            <td>2</td>
+                            <td>Minerva Hooper</td>
+                            <td>Curaçao</td>
+                            <td>Assistant</td>
+                            <td className="text-primary">$23,789</td>
+                          </tr>
+                          <tr>
+                            <td>3</td>
+                            <td>Sage Rodriguez</td>
+                            <td>Netherlands</td>
+                            <td>Reviewer</td>
+                            <td className="text-primary">$56,142</td>
+                          </tr>
+                          <tr>
+                            <td>4</td>
+                            <td>Philip Chaney</td>
+                            <td>Korea, South</td>
+                            <td>Author</td>
+                            <td className="text-primary">$38,735</td>
+                          </tr>
+                          <tr>
+                            <td>5</td>
+                            <td>Doris Greene</td>
+                            <td>Malawi</td>
+                            <td>Feldkirchen in Kärnten</td>
+                            <td className="text-primary">$63,542</td>
+                          </tr>
+                          <tr>
+                            <td>6</td>
+                            <td>Mason Porter</td>
+                            <td>Chile</td>
+                            <td>Gloucester</td>
+                            <td className="text-primary"></td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -215,4 +208,4 @@ const JournalManager = () => {
     </div>
   );
 };
-export default JournalManager;
+export default Tables;
