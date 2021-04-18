@@ -33,16 +33,20 @@ const Info = () => {
                           About_me: '',
                         }}
                         onSubmit={async (values, actions) => {
-                          await userInfo.mutate({
-                            onSuccess: async res => {
-                              Message.success();
-                              actions.resetForm();
-                            },
-                            onError: e => {
-                              actions.setSubmitting(false);
-                              Message.error(e);
-                            },
-                          });
+                          // await createUser.mutate(
+                          //   _omit(values, 'confirm_password'),
+                          //   {
+                          //     onSuccess: async res => {
+                          //       // eslint-disable-next-line no-console
+                          //       Message.success();
+                          //       actions.resetForm();
+                          //     },
+                          //     onError: e => {
+                          //       actions.setSubmitting(false);
+                          //       Message.error(e);
+                          //     },
+                          //   },
+                          // );
                         }}
                       >
                         {formikProps => <BasicInfo {...formikProps} />}

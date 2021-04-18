@@ -5,11 +5,11 @@ import { Formik } from 'formik';
 import { useMutation } from 'react-query';
 import { Message } from '@/components/alert/message';
 import Router from 'next/router';
-import _get from 'lodash/get';
 import MarketingHead from '../layouts/marketing-template/marketing-head';
 import { LoginForm } from './components';
 import { validateLoginForm } from './validation';
 import { LOGIN_USER } from './queries';
+import _get from 'lodash/get';
 
 const Login = () => {
   const loginUser = useMutation(LOGIN_USER);

@@ -27,21 +27,21 @@ const BasicInfo = (props: Props) => {
     <React.Fragment>
       <form>
         <div className="row">
-          <div className="col-md-8">
-            <div className="form-group">
-              <label className="bmd-label-floating">Journal Title</label>
-              <input type="text" className="form-control" />
-            </div>
-          </div>
           <div className="col-md-5">
             <div className="form-group">
-              <label className="bmd-label-floating">Journal Initials</label>
+              <label className="bmd-label-floating">Journal Type</label>
               <input type="text" className="form-control" />
             </div>
           </div>
-          <div className="col-md-8">
+          <div className="col-md-3">
             <div className="form-group">
-              <label className="bmd-label-floating">Journal Abbreviation</label>
+              <label className="bmd-label-floating">Username</label>
+              <input type="text" className="form-control" />
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form-group">
+              <label className="bmd-label-floating">Email address</label>
               <input type="email" className="form-control" />
             </div>
           </div>
@@ -50,13 +50,35 @@ const BasicInfo = (props: Props) => {
         <div className="row">
           <div className="col-md-6">
             <div className="form-group">
-              <label className="bmd-label-floating">Publishing Details</label>
+              <label className="bmd-label-floating">Fist Name</label>
               <input type="text" className="form-control" />
             </div>
           </div>
           <div className="col-md-6">
             <div className="form-group">
-              <label className="bmd-label-floating">Online ISSN</label>
+              <label className="bmd-label-floating">Last Name</label>
+              <input type="text" className="form-control" />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="form-group">
+              <label className="bmd-label-floating">Adress</label>
+              <input type="text" className="form-control" />
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-4">
+            <div className="form-group">
+              <label className="bmd-label-floating">City</label>
+              <input type="text" className="form-control" />
+            </div>
+          </div>
+          <div className="col-md-4">
+            <div className="form-group">
+              <label className="bmd-label-floating">Country</label>
               <input type="text" className="form-control" />
             </div>
           </div>

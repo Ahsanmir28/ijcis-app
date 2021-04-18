@@ -1,5 +1,9 @@
 import React from 'react';
+import { Formik } from 'formik';
+// eslint-disable-next-line max-len
 import SecureTemplate from '../../layouts/secure-template';
+import { validateTabledata } from './validation';
+import TableData from "@/components/admin-dashboard/tables/components/table-data";
 
 const Tables = () => {
   return (
@@ -11,67 +15,38 @@ const Tables = () => {
               <div className="col-md-12">
                 <div className="card">
                   <div className="card-header card-header-primary">
-                    <h4 className="card-title ">User & Roles</h4>
+                    <h4 className="card-title ">Simple Tables</h4>
                     <p className="card-category">
                       {' '}
-                      Here are the Users and their Roles
+                      Here is a subtitle for this table
                     </p>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">
-                      <table className="table">
-                        <thead className=" text-primary">
-                          <th>ID</th>
-                          <th>USERNAME</th>
-                          <th>EMAIL</th>
-                          <th>ROLES</th>
-                          <th>Salary</th>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>1</td>
-                            <td>Dakota Rice</td>
-                            <td>Niger</td>
-                            <td>Journal Manager</td>
-                            <td className="text-primary">$36,738</td>
-                          </tr>
-                          <tr>
-                            <td>2</td>
-                            <td>Minerva Hooper</td>
-                            <td>Curaçao</td>
-                            <td>Assistant</td>
-                            <td className="text-primary">$23,789</td>
-                          </tr>
-                          <tr>
-                            <td>3</td>
-                            <td>Sage Rodriguez</td>
-                            <td>Netherlands</td>
-                            <td>Reviewer</td>
-                            <td className="text-primary">$56,142</td>
-                          </tr>
-                          <tr>
-                            <td>4</td>
-                            <td>Philip Chaney</td>
-                            <td>Korea, South</td>
-                            <td>Author</td>
-                            <td className="text-primary">$38,735</td>
-                          </tr>
-                          <tr>
-                            <td>5</td>
-                            <td>Doris Greene</td>
-                            <td>Malawi</td>
-                            <td>Feldkirchen in Kärnten</td>
-                            <td className="text-primary">$63,542</td>
-                          </tr>
-                          <tr>
-                            <td>6</td>
-                            <td>Mason Porter</td>
-                            <td>Chile</td>
-                            <td>Gloucester</td>
-                            <td className="text-primary"></td>
-                          </tr>
-                        </tbody>
-                      </table>
+                      <Formik
+                        initialValues={{
+                          table_data: '',
+                        }}
+                        /* eslint-disable-next-line no-unused-vars */
+                        onSubmit={async (values, actions) => {
+                          // await createUser.mutate(
+                          //   _omit(values, 'confirm_password'),
+                          //   {
+                          //     onSuccess: async res => {
+                          //       // eslint-disable-next-line no-console
+                          //       Message.success();
+                          //       actions.resetForm();
+                          //     },
+                          //     onError: e => {
+                          //       actions.setSubmitting(false);
+                          //       Message.error(e);
+                          //     },
+                          //   },
+                          // );
+                        }}
+                      >
+                        {formikProps => <TableData{...formikProps} />}
+                      </Formik>
                     </div>
                   </div>
                 </div>
