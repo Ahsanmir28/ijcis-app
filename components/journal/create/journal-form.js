@@ -32,7 +32,7 @@ const JournalForm = () => {
                   setValue={setValue}
                 >
                   <TabPanel value={value} index={0}>
-                    <BasicInfo />
+                    <BasicInfo value={value} setValue={setValue} />
                   </TabPanel>
                   <TabPanel value={value} index={1}>
                     <Contact />

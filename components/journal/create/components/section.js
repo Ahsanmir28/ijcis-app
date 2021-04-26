@@ -9,6 +9,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
+import FormDialog from '@/constants/section-dialog';
 
 type Props = {
   values: any,
@@ -20,7 +21,7 @@ type Props = {
   isSubmitting: boolean,
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
   },
@@ -57,6 +58,7 @@ const Section = (props: Props) => {
           <Typography>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget.
+            <FormDialog />
           </Typography>
         </AccordionDetails>
       </Accordion>

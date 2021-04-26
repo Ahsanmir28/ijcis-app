@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Tabs, Tab } from '@material-ui/core';
+import {getLocalStorageValues} from "@/constants/local-storage";
 
 type Props = {
   children: any,
@@ -26,7 +27,12 @@ export const TabPanel = (props: Props) => {
 
 const RadioTabs = (props: Props) => {
   const { children, headings, value, setValue } = props;
-  const handleChange = (e, newValue) => setValue(newValue);
+  // const { journalId } = getLocalStorageValues();
+  const handleChange = (e, newValue) => {
+    // if (journalId) {
+      setValue(newValue);
+    // }
+  };
   return (
     <React.Fragment>
       <Tabs

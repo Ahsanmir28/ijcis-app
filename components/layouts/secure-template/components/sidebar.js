@@ -69,7 +69,6 @@ const Sidebar = () => {
                 </a>
               </li>
             </Link>
-
             <li
               className={`nav-item ${pathname === '/admin/journal' &&
                 'active'}  `}

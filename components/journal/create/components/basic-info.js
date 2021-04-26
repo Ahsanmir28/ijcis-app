@@ -40,18 +40,17 @@ const BasicInfo = () => {
           await saveJournal.mutate(values, {
             onSuccess: async res => {
               await refetch();
+              console.log(res);
+              localStorage.setItem('journal_id', _get(res, 'data._id'));
               Message.success();
               actions.resetForm();
-              await Router.push({
-                shallow: true,
-              });
+              // setValue(value + 1);
             },
             onError: e => {
               actions.setSubmitting(false);
               Message.error(e);
             },
           });
-        } else {
         }
       }}
     >

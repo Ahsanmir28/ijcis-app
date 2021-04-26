@@ -1,81 +1,52 @@
 import React from 'react';
-import { fieldValidate } from '@/utils/form-utils';
-// import { Field } from 'formik';
-// import { fieldValidate, fieldValidateBool } from '@/utils/form-utils';
+import { Formik } from 'formik';
+import { Message } from '@/components/alert/message';
+import { useMutation, useQuery } from 'react-query';
+import {
+  GET_CONTACT_BY_JOURNAL_ID,
+  SAVE_CONTACT,
+} from '@/components/journal/create/queries';
+import { getLocalStorageValues } from '@/constants/local-storage';
+import { ContactForm } from './index';
+import { validateContact } from '../validation';
 
-type Props = {
-  values: any,
-  handleChange: Function,
-  handleBlur: Function,
-  errors: any,
-  handleSubmit: any,
-  dirty: boolean,
-  isSubmitting: boolean,
-};
-const Contact = (props: Props) => {
-  const {
-    values,
-    isSubmitting,
-    dirty,
-    handleChange,
-    handleBlur,
-    errors,
-    handleSubmit,
-  } = props;
-  console.log('errors', errors);
-  console.log('values', values);
+const Contact = () => {
+  const { journal_id } = getLocalStorageValues();
+  const { data, isloading, refetch } = useQuery(
+    ['GET_CONTACT_BY_JOURNAL_ID', { journal_id }],
+    GET_CONTACT_BY_JOURNAL_ID,
+  );
+  console.log('data', data);
+  const saveContact = useMutation(SAVE_CONTACT);
   return (
-    <form>
-      <div className="row">
-        <div className="col-md-6">
-          <div className="form-group">
-            <label className="bmd-label-floating">Name</label>
-            <input type="text" className="form-control" />
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="form-group">
-            <label className="bmd-label-floating">Email</label>
-            <input type="text" className="form-control" />
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="form-group">
-            <label className="bmd-label-floating">Phone</label>
-            <input type="email" className="form-control" />
-          </div>
-        </div>
-
-        <div className="col-md-6">
-          <div className="form-group">
-            <label className="bmd-label-floating">Affiliation</label>
-            <input type="text" className="form-control" />
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-12">
-          <div className="form-group">
-            <label className="bmd-label-floating">Mailing Address</label>
-            <textarea
-              rows={5}
-              className="form-control"
-              placeholder="
-             8888 University Dr, Burnaby, BC V5A 1S6
-             "
-            />
-          </div>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-12"></div>
-      </div>
-      <button type="submit" className="btn btn-primary pull-right">
-        Save
-      </button>
-      <div className="clearfix"></div>
-    </form>
+    <Formik
+      enableReinitialize={true}
+      initialValues={{
+        name: '',
+        email: '',
+        phone: '',
+        affiliation: '',
+        address: '',
+        journal_id,
+      }}
+      validationSchema={validateContact}
+      onSubmit={async (values, actions) => {
+        await saveContact.mutate(values, {
+          onSuccess: async res => {
+            await refetch();
+            Message.success();
+            actions.resetForm();
+            // setValue(value + 1);
+          },
+          onError: e => {
+            actions.setSubmitting(false);
+            Message.error(e);
+          },
+        });
+      }}
+    >
+      {formikProps => <ContactForm {...formikProps} />}
+    </Formik>
   );
 };
-
 export { Contact };
