@@ -15,3 +15,14 @@ export const validateContact = Yup.object().shape({
   affiliation: Yup.string(),
   address: Yup.string(),
 });
+export const validateSection = Yup.object().shape({
+  title: Yup.string(),
+});
+export const validateUpdateSection = Yup.object().shape({
+  section_title: Yup.string(),
+  abbreviation: Yup.string(),
+  policy: Yup.string(),
+  word_count: Yup.string(),
+  options: Yup.string(),
+  identify: Yup.string(),
+});

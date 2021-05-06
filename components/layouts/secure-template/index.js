@@ -1,1 +1,1 @@
-export { default } from'./secure-template';
+export { default } from './secure-template';

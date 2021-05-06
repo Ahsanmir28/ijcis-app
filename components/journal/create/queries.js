@@ -25,3 +25,29 @@ export const GET_CONTACT_BY_JOURNAL_ID = async key => {
   );
   return res.data;
 };
+export const SAVE_SECTION = async e => {
+  const res = await axios.post(`${baseURL}/v1/section`, e);
+  return res.data;
+};
+
+export const GET_SECTION_BY_JOURNAL_ID = async key => {
+  const { queryKey } = key;
+  const res = await axios.get(
+    `${baseURL}/v1/section/journal_id/${queryKey[1].journal_id}`,
+  );
+  return res.data;
+};
+export const UPDATE_SECTION = async e => {
+  const res = await axios.patch(
+    `${baseURL}/v1/section/${e.section_id}`,
+    e.data,
+  );
+  return res.data;
+};
+export const GET_SECTION_BY_ID = async key => {
+  const { queryKey } = key;
+  const res = await axios.get(
+    `${baseURL}/v1/section/${queryKey[1].section_id}`,
+  );
+  return res.data;
+};

@@ -9,7 +9,13 @@ import { GET_JOURNAL_BY_ID, JOURNAL_MAST } from '../queries';
 import { validateJournal } from '../validation';
 import { BasicInfoForm } from './index';
 
-const BasicInfo = () => {
+type Props = {
+    setValue: any,
+    value: any,
+};
+
+const BasicInfo = (props: Props) => {
+    const { setValue, value } = props;
   const saveJournal = useMutation(JOURNAL_MAST);
   const { user_id } = getLocalStorageValues();
   const router = useRouter();
@@ -44,7 +50,7 @@ const BasicInfo = () => {
               localStorage.setItem('journal_id', _get(res, 'data._id'));
               Message.success();
               actions.resetForm();
-              // setValue(value + 1);
+              setValue(value + 1);
             },
             onError: e => {
               actions.setSubmitting(false);

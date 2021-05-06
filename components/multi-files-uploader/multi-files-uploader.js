@@ -4,9 +4,8 @@ import { useMutation } from 'react-query';
 import axios from 'axios';
 import { baseURL } from '@/constants/index';
 import Filestack from '@/components/filestack';
-import { appMode } from '@/constants/env';
 import { Message } from '@/components/alert/message';
-import ProgressLoader from '@/components/loaders';
+// import ProgressLoader from '@/components/loaders';
 
 type Props = {
   axiosMethod?: string,
@@ -45,7 +44,7 @@ const MultiFilesUploader = (props: Props) => {
     platformSite,
   } = props;
   const isWindow = typeof window !== 'undefined';
-  const [UPLOAD_FILE, { isLoading }] = useMutation(async e => {
+  const uploadFile = useMutation(async e => {
     if (axiosMethod === 'post') {
       const res = await axios.post(`${baseURL}/v1/${uploadUrl}`, e);
       return res;
@@ -69,25 +68,13 @@ const MultiFilesUploader = (props: Props) => {
       const data = {
         ...FormInfo,
       };
-      if (appMode === 'Dev') {
-        data.file_url = url;
-        data.original_name = handle;
-      }
-      if (appMode !== 'Dev') {
-        data.file_url = ` https://assets.vonza.com/${key}`;
-        data.original_name = key;
-      }
+      data.file_url = url;
+      data.original_name = handle;
       data.file_size = size;
       data.file_type = mimetype;
       data.file_name = filename;
-      UPLOAD_FILE(data, {
+      uploadFile.mutate(data, {
         onSuccess: async res => {
-          if (imagesFunc && isWindow) {
-            imagesFunc(res);
-          }
-          if (performFunc) {
-            await performFunc(res);
-          }
           if (refetch) {
             await refetch();
           }
@@ -121,7 +108,7 @@ const MultiFilesUploader = (props: Props) => {
   };
   /** Filestack options */
   const options = {
-    accept: acceptFileTypes,
+    // accept: acceptFileTypes,
     maxFiles,
     maxSize: UploadMaxSize * 1024 * 1024,
     lang: 'en',
@@ -133,7 +120,6 @@ const MultiFilesUploader = (props: Props) => {
     customText: {
       'Deselect All': 'Clear All',
     },
-    ...filestackOptions,
   };
 
   return (
@@ -141,7 +127,6 @@ const MultiFilesUploader = (props: Props) => {
       <Filestack id={uploaderId} options={options}>
         {children}
       </Filestack>
-      {isLoading && !platformSite && <ProgressLoader />}
     </React.Fragment>
   );
 };

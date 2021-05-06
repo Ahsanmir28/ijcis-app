@@ -1,9 +1,15 @@
 import React from 'react';
+import { useQuery } from 'react-query';
+import _get from 'lodash/get';
 import { Banner } from '../common';
 import MarketingTemplate from '../layouts/marketing-template';
 import { Slider } from '../common/slider';
+import { GET_ALL_JOURNALS } from './queries';
+import Link from 'next/link';
 
 const Journals = () => {
+  const { data } = useQuery(['GET_ALL_JOURNALS', {}], GET_ALL_JOURNALS);
+  console.log('data', data);
   return (
     <div>
       <link href="styles.css?version=1" rel="stylesheet"></link>
@@ -26,188 +32,39 @@ const Journals = () => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-6 animate-box">
-                  <div className="course">
-                    <a
-                      href="#"
-                      className="course-img"
-                      style={{ backgroundImage: 'url(images/project-1.jpg);' }}
-                    >
-                      >
-                    </a>
-                    <div className="desc">
-                      <h3>
-                        <a href="#">Web Master</a>
-                      </h3>
-                      <p>
-                        Dignissimos asperiores vitae velit veniam totam fuga
-                        molestias accusamus alias autem provident. Odit ab
-                        aliquam dolor eius molestias accusamus alias autem
-                        provident. Odit ab aliquam dolor eius.
-                      </p>
-                      <span>
-                        <a
-                          href="#"
-                          className="btn btn-primary btn-sm btn-course"
-                        >
-                          Take A Course
-                        </a>
-                      </span>
+                {_get(data, 'data', []).map(journal => (
+                  <div className="col-md-6 animate-box">
+                    <div className="course">
+                      <a
+                        href="#"
+                        className="course-img"
+                        style={{
+                          backgroundImage: 'url(images/project-1.jpg);',
+                        }}
+                      ></a>
+                      <div className="desc">
+                        <h3>
+                          <a href="#">{journal.journal_title}</a>
+                        </h3>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: journal.journal_editor,
+                          }}
+                        />
+                        <span>
+                          <Link href="/view/contact" as="/view/contact">
+                            <a
+                              href="#"
+                              className="btn btn-primary btn-sm btn-course"
+                            >
+                              View Journal
+                            </a>
+                          </Link>
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="col-md-6 animate-box">
-                  <div className="course">
-                    <a
-                      href="#"
-                      className="course-img"
-                      style={{
-                        'backgroundImage ': 'url(images/project-2.jpg);',
-                      }}
-                    >
-                      >
-                    </a>
-                    <div className="desc">
-                      <h3>
-                        <a href="#">Business &amp; Accounting</a>
-                      </h3>
-                      <p>
-                        Dignissimos asperiores vitae velit veniam totam fuga
-                        molestias accusamus alias autem provident. Odit ab
-                        aliquam dolor eius molestias accusamus alias autem
-                        provident. Odit ab aliquam dolor eius.
-                      </p>
-                      <span>
-                        <a
-                          href="#"
-                          className="btn btn-primary btn-sm btn-course"
-                        >
-                          Take A Course
-                        </a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 animate-box">
-                  <div className="course">
-                    <a
-                      href="#"
-                      className="course-img"
-                      style={{ backgroundImage: 'url(images/project-3.jpg);' }}
-                    >
-                      >
-                    </a>
-                    <div className="desc">
-                      <h3>
-                        <a href="#">Science &amp; Technology</a>
-                      </h3>
-                      <p>
-                        Dignissimos asperiores vitae velit veniam totam fuga
-                        molestias accusamus alias autem provident. Odit ab
-                        aliquam dolor eius molestias accusamus alias autem
-                        provident. Odit ab aliquam dolor eius.
-                      </p>
-                      <span>
-                        <a
-                          href="#"
-                          className="btn btn-primary btn-sm btn-course"
-                        >
-                          Take A Course
-                        </a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 animate-box">
-                  <div className="course">
-                    <a
-                      href="#"
-                      className="course-img"
-                      style={{ backgroundImage: 'url(images/project-4.jpg);' }}
-                    >
-                      >
-                    </a>
-                    <div className="desc">
-                      <h3>
-                        <a href="#">Health &amp; Psychology</a>
-                      </h3>
-                      <p>
-                        Dignissimos asperiores vitae velit veniam totam fuga
-                        molestias accusamus alias autem provident. Odit ab
-                        aliquam dolor eius molestias accusamus alias autem
-                        provident. Odit ab aliquam dolor eius.
-                      </p>
-                      <span>
-                        <a
-                          href="#"
-                          className="btn btn-primary btn-sm btn-course"
-                        >
-                          Take A Course
-                        </a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 animate-box">
-                  <div className="course">
-                    <a
-                      href="#"
-                      className="course-img"
-                      style={{ backgroundImage: 'url(images/project-5.jpg);' }}
-                    >
-                      >
-                    </a>
-                    <div className="desc">
-                      <h3>
-                        <a href="#">Science &amp; Technology</a>
-                      </h3>
-                      <p>
-                        Dignissimos asperiores vitae velit veniam totam fuga
-                        molestias accusamus alias autem provident. Odit ab
-                        aliquam dolor eius molestias accusamus alias autem
-                        provident. Odit ab aliquam dolor eius.
-                      </p>
-                      <span>
-                        <a
-                          href="#"
-                          className="btn btn-primary btn-sm btn-course"
-                        >
-                          Take A Course
-                        </a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 animate-box">
-                  <div className="course">
-                    <a
-                      href="#"
-                      className="course-img"
-                      style={{ backgroundImage: 'url(images/project-6.jpg);' }}
-                    >
-                      >
-                    </a>
-                    <div className="desc">
-                      <h3>
-                        <a href="#">Health &amp; Psychology</a>
-                      </h3>
-                      <p>
-                        Dignissimos asperiores vitae velit veniam totam fuga
-                        molestias accusamus alias autem provident. Odit ab
-                        aliquam dolor eius molestias accusamus alias autem
-                        provident. Odit ab aliquam dolor eius.
-                      </p>
-                      <span>
-                        <a
-                          href="#"
-                          className="btn btn-primary btn-sm btn-course"
-                        >
-                          Take A Course
-                        </a>
-                      </span>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>

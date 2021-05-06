@@ -8,6 +8,8 @@ module.exports = {
     STRIPE_CLIENT_API_KEY:
       process.env.STRIPE_CLIENT_API_KEY ||
       'pk_test_51HuvEhLexm6rjU0KzK0gLQ4M5tG4wYcsqlABqaY9zNZKozyNuTWFnfALBNH9Gju4OBBhpb0bn4G3HmRwaKWKLYt300S5rKuoFT',
+    FILE_STACK_API_KEY:
+      process.env.FILE_STACK_API_KEY || 'AVBcc2TgTQqkAVpUyeHm4z',
   },
   experimental: {
     jsconfigPaths: true,

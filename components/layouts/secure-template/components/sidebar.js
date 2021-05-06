@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import PublishIcon from '@material-ui/icons/Publish';
 
 const Sidebar = () => {
   const router = useRouter();
@@ -66,6 +67,19 @@ const Sidebar = () => {
                 <a className="nav-link" href="/admin/icons">
                   <i className="material-icons">bubble_chart</i>
                   <p>Statistics</p>
+                </a>
+              </li>
+            </Link>
+            <Link href="/admin/submission" as="/admin/submission">
+              <li
+                className={`nav-item ${pathname ===
+                  '/admin/submission/submission' && 'active'}  `}
+              >
+                <a className="nav-link" href="/admin/submission">
+                  <i className="material-icons">
+                    <PublishIcon />
+                  </i>
+                  <p>Submission</p>
                 </a>
               </li>
             </Link>

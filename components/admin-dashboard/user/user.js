@@ -7,8 +7,6 @@ import {
 } from '@/components/admin-dashboard/user/queries';
 import { Message } from '@/components/alert/message';
 import Router from 'next/router';
-// eslint-disable-next-line no-unused-vars
-import _omit from 'lodash.omit';
 import { useMutation, useQuery } from 'react-query';
 import { getLocalStorageValues } from '@/constants/local-storage';
 import _get from 'lodash/get';
