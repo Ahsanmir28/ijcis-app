@@ -30,7 +30,7 @@ const Slider = () => {
 
             <div className="item">
               <img
-                src="https://mopinion.com/wp-content/uploads/2019/11/Cover-ux-books.jpg"
+                src="https://lithub.com/wp-content/uploads/2017/02/used-books-stack-1240x591.jpg"
                 style={{ width: '100%', height: '400px' }}
               />
             </div>
