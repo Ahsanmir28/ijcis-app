@@ -27,7 +27,7 @@ const LoginForm = (props: Props) => {
   return (
     <React.Fragment>
       <form className="loginform">
-        <h4 className="card-title mt-3 text-center">Login Account</h4>
+        <h4 className="card-title mt-3 text-center">Forgot Password</h4>
         <Field name="email">
           {({ field, form }) => {
             return (
@@ -65,43 +65,6 @@ const LoginForm = (props: Props) => {
             );
           }}
         </Field>
-        <Field name="password">
-          {({ field, form }) => {
-            return (
-              <React.Fragment>
-                {fieldValidateBool(field, form) ? (
-                  <small
-                    className="form-text invalid-feedback"
-                    style={{ fontSize: '100%', display: 'block' }}
-                  >
-                    {' '}
-                    {errors.password}
-                  </small>
-                ) : (
-                  <label htmlFor="exampleInputEmail">Password</label>
-                )}
-                <div className="form-group input-group">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">
-                      <i className="fa fa-lock" />
-                    </span>
-                  </div>
-                  <input
-                    type="password"
-                    value={values.password}
-                    className={`form-control
-                       form-control-user ${fieldValidate(field, form)}`}
-                    id="exampleInputEmail"
-                    placeholder="********"
-                    name="password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-              </React.Fragment>
-            );
-          }}
-        </Field>
         <div className="form-group">
           <button
             type="submit"
@@ -110,17 +73,9 @@ const LoginForm = (props: Props) => {
             onClick={handleSubmit}
           >
             {' '}
-            Login{' '}
+            Forgot Password{' '}
           </button>
         </div>{' '}
-        <p className="text-center">
-          Forgot Password?
-          <Link href="/forgot-password" as="/forgot-password">
-            <a>
-              <span> Click here </span>
-            </a>
-          </Link>{' '}
-        </p>
         <p className="text-center">
           Create an Account?
           <Link href="/create-account" as="/create-account">

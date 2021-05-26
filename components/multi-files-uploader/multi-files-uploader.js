@@ -73,6 +73,8 @@ const MultiFilesUploader = (props: Props) => {
       data.file_size = size;
       data.file_type = mimetype;
       data.file_name = filename;
+      console.log(FormInfo);
+      console.log('data', data);
       uploadFile.mutate(data, {
         onSuccess: async res => {
           if (refetch) {

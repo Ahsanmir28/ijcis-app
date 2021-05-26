@@ -10,12 +10,12 @@ import { validateJournal } from '../validation';
 import { BasicInfoForm } from './index';
 
 type Props = {
-    setValue: any,
-    value: any,
+  setValue: any,
+  value: any,
 };
 
 const BasicInfo = (props: Props) => {
-    const { setValue, value } = props;
+  const { setValue, value } = props;
   const saveJournal = useMutation(JOURNAL_MAST);
   const { user_id } = getLocalStorageValues();
   const router = useRouter();

@@ -18,6 +18,11 @@ export const SAVE_CONTACT = async e => {
   const res = await axios.post(`${baseURL}/v1/contact/`, e);
   return res.data;
 };
+
+export const UPDATE_CONTACT = async e => {
+  const res = await axios.patch(`${baseURL}/v1/contact/${e.contact_id}`, e.data);
+  return res.data;
+};
 export const GET_CONTACT_BY_JOURNAL_ID = async key => {
   const { queryKey } = key;
   const res = await axios.get(

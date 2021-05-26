@@ -83,6 +83,7 @@ const JournalManager = () => {
                               <td>{journal.journal_title}</td>
                               <td>{journal.journal_initials} </td>
                               <td>{journal.publisher}</td>
+                              <td>{journal.is_published ? 'Published' : 'Un-Published'}</td>
                               <td>
                                 <button
                                   type="submit"
@@ -90,7 +91,7 @@ const JournalManager = () => {
                                     handleDeleteJournal(e, journal._id)
                                   }
                                 >
-                                  Delete Account
+                                  Delete Journal
                                 </button>
                               </td>
                             </tr>

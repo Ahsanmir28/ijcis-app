@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import Router, { useRouter } from 'next/router';
 import PublishIcon from '@material-ui/icons/Publish';
 
 const Sidebar = () => {
@@ -93,6 +93,17 @@ const Sidebar = () => {
                   <p>Journal</p>
                 </a>
               </Link>
+            </li>
+            <li className="nav-item">
+              <span
+                onClick={() => {
+                  localStorage.clear();
+                  Router.push('/', '/');
+                }}
+              >
+                <i className="material-icons">Exit</i>
+                <p>Logout</p>
+              </span>
             </li>
           </ul>
         </div>

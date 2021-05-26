@@ -27,44 +27,7 @@ const LoginForm = (props: Props) => {
   return (
     <React.Fragment>
       <form className="loginform">
-        <h4 className="card-title mt-3 text-center">Login Account</h4>
-        <Field name="email">
-          {({ field, form }) => {
-            return (
-              <React.Fragment>
-                {fieldValidateBool(field, form) ? (
-                  <small
-                    className="form-text invalid-feedback"
-                    style={{ fontSize: '100%', display: 'block' }}
-                  >
-                    {' '}
-                    {errors.email}
-                  </small>
-                ) : (
-                  <label htmlFor="exampleInputEmail">Email</label>
-                )}
-                <div className="form-group input-group">
-                  <div className="input-group-prepend">
-                    <span className="input-group-text">
-                      <i className="fa fa-envelope" />
-                    </span>
-                  </div>
-                  <input
-                    type="text"
-                    value={values.email}
-                    className={`form-control
-                       form-control-user ${fieldValidate(field, form)}`}
-                    id="exampleInputEmail"
-                    placeholder="Enter your email"
-                    name="email"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-              </React.Fragment>
-            );
-          }}
-        </Field>
+        <h4 className="card-title mt-3 text-center">Update Password</h4>
         <Field name="password">
           {({ field, form }) => {
             return (
@@ -102,6 +65,43 @@ const LoginForm = (props: Props) => {
             );
           }}
         </Field>
+        <Field name="code">
+          {({ field, form }) => {
+            return (
+              <React.Fragment>
+                {fieldValidateBool(field, form) ? (
+                  <small
+                    className="form-text invalid-feedback"
+                    style={{ fontSize: '100%', display: 'block' }}
+                  >
+                    {' '}
+                    {errors.code}
+                  </small>
+                ) : (
+                  <label htmlFor="exampleInputEmail">Email Verify Code</label>
+                )}
+                <div className="form-group input-group">
+                  <div className="input-group-prepend">
+                    <span className="input-group-text">
+                      <i className="fa fa-lock" />
+                    </span>
+                  </div>
+                  <input
+                    type="code"
+                    value={values.code}
+                    className={`form-control
+                       form-control-user ${fieldValidate(field, form)}`}
+                    id="exampleInputEmail"
+                    placeholder="********"
+                    name="code"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                </div>
+              </React.Fragment>
+            );
+          }}
+        </Field>
         <div className="form-group">
           <button
             type="submit"
@@ -110,25 +110,9 @@ const LoginForm = (props: Props) => {
             onClick={handleSubmit}
           >
             {' '}
-            Login{' '}
+            Update Password{' '}
           </button>
         </div>{' '}
-        <p className="text-center">
-          Forgot Password?
-          <Link href="/forgot-password" as="/forgot-password">
-            <a>
-              <span> Click here </span>
-            </a>
-          </Link>{' '}
-        </p>
-        <p className="text-center">
-          Create an Account?
-          <Link href="/create-account" as="/create-account">
-            <a>
-              <span> Sign Up </span>
-            </a>
-          </Link>{' '}
-        </p>
       </form>
     </React.Fragment>
   );

@@ -3,5 +3,6 @@ export const tableHeadings = [
   'Title',
   'Initials',
   'Publisher',
+  'Status',
   'Actions',
 ];

@@ -1,11 +1,11 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 import _get from 'lodash/get';
+import Link from 'next/link';
 import { Banner } from '../common';
 import MarketingTemplate from '../layouts/marketing-template';
 import { Slider } from '../common/slider';
 import { GET_ALL_JOURNALS } from './queries';
-import Link from 'next/link';
 
 const Journals = () => {
   const { data } = useQuery(['GET_ALL_JOURNALS', {}], GET_ALL_JOURNALS);
@@ -52,7 +52,7 @@ const Journals = () => {
                           }}
                         />
                         <span>
-                          <Link href="/view/contact" as="/view/contact">
+                          <Link href="/journals/view/[journalId]" as={`/journals/view/${journal._id}`}>
                             <a
                               href="#"
                               className="btn btn-primary btn-sm btn-course"
